@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& arr, int target) {
+        int n=arr.size();
+        vector<int> ans;
+        int s=0;
+        int e=n-1;
+        while(arr[s]+arr[e]!=target){
+            if(arr[s]+arr[e]<target){
+                s++;
+            }
+            else {
+                e--;
+            }
+        }
+        ans.push_back(s+1);
+        ans.push_back(e+1);
+        return ans;
+    }
+};//Time Complexity:O(N)
+// S.C:O(1)
