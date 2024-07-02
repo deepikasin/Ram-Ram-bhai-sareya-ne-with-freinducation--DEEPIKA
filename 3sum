@@ -1,0 +1,32 @@
+class Solution {
+public:
+void helper(vector<int>&temp,vector<vector<int>>&ans,vector<int>& nums,int ind){
+    //finding all subset of len 3
+    if (temp.size() == 3) {
+            if (temp[0] + temp[1] + temp[2] == 0) {
+                ans.push_back(temp);
+            }
+            return;
+        }
+    if(ind>=nums.size()){
+        return ;
+    }
+    temp.push_back(nums[ind]);
+    helper(temp,ans,nums,ind+1);
+    temp.pop_back();
+    helper(temp,ans,nums,ind+1);
+}
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<int>temp;
+        vector<vector<int>>ans;
+        helper(temp,ans,nums,0);
+//removing duplicate entries in ans
+        sort(ans.begin(), ans.end());
+        ans.erase(unique(ans.begin(), ans.end()), ans.end());
+        return ans;
+    }
+};
+//TC=O(2^N)
+//SC=O(N)
+//but last few test cases didnt passed
