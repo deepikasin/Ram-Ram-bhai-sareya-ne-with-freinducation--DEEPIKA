@@ -1,0 +1,36 @@
+class Solution {
+public:
+bool find(int ans,vector<int>&temp){
+    for(int i=0;i<temp.size();i++){
+        if(ans==temp[i]) return 1;
+    }
+    return 0;
+}
+    bool isHappy(int n) {
+        vector<int>temp;
+        int ans=0;
+        int a=n;
+        while(a>0){
+            int t=a%10;
+            ans+=pow(t,2);
+            a=a/10;
+        }
+        temp.push_back(ans);
+        ans=0;
+        for(int i=0;i<10000;i++){
+            a=temp[i];
+                while(a>0){
+                int t=a%10;
+                ans+=pow(t,2);
+                a=a/10;
+            }
+            if(ans==1) return true;
+            if(find(ans,temp)){ return false; }
+            temp.push_back(ans);
+            ans=0;
+        }
+        return 1;
+    }
+};
+// TC=O(logN)
+//SC=O(1)
