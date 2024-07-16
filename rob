@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void solve( vector<int>& nums , bool check , int index , int &maxi , int cnt ) {
+        if(index>=nums.size()) {
+            maxi=max(maxi,cnt);
+            return ;
+        }
+        if(check){
+            solve(nums,false,index+1,maxi,cnt);
+        }
+        else{
+
+            solve(nums,true,index+1,maxi,cnt+nums[index]);           
+            solve(nums,false,index+1,maxi,cnt);
+            
+        }
+    }
+    int rob(vector<int>& nums) {
+        bool check=false;
+        int maxi=0;
+        solve(nums,check,0,maxi,0);
+        return maxi;
+    }
+//TC=O(2^N)
+//SC=O(1)
+};
