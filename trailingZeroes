@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        int five=0;
+        int two=0;
+        while(n>1){
+            int temp1=n;
+            int temp2=n;
+            while(temp1%5==0){
+                temp1=temp1/5;
+                five++;
+            }
+            while(temp2%2==0){
+                temp2=temp2/2;
+                two++;
+            }n--;
+        }
+        return min(two,five);
+    }
+};
+//TC=O(N)
+//SC=O(1)
