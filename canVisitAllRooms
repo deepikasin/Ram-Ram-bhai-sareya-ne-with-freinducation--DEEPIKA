@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        int n=rooms.size();
+        vector<bool>ans(n,0);
+        ans[0]=1;
+        vector<int>temp;
+        for( int i=0; i<rooms[0].size(); i++ ) {
+            temp.push_back(rooms[0][i]);
+            ans[rooms[0][i]]=1;
+        }
+        while(temp.size()>0) {
+            int n=temp.back();
+            temp.pop_back();
+            for( int i=0; i<rooms[n].size(); i++ ) {
+                if(ans[rooms[n][i]]==0){
+                    temp.push_back(rooms[n][i]);
+                    ans[rooms[n][i]]=1;
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(ans[i]!=1) return false;
+        }
+        return true;
+    }
+};
+//TC=O(N);
+//SC:0(N)
